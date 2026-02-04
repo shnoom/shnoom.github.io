@@ -5,8 +5,9 @@
     --accent-color: #ff9999; 
 }
 @font-face {
-  font-family: ProtestGrotesk; 
-  src: url(ProtestGrotesk-160-Medium-Trial.ttf); 
+    font-family: 'Protest Grotesk';
+  src: url('./ProtestGrotesk-160-Medium-Trial.ttf') format('truetype');
+  font-style: normal;
 }
 
 body {
