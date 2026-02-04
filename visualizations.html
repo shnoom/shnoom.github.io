@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizations | Isabella Lian</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="vis-page">
+
+    <nav class="navbar">
+        <a href="index.html" class="nav">Back to Home
+        </a>
+    </nav>
+
+    <div class="container vis-container">
+        <h1 class="page-title">Visualizations</h1>
+        <p class="subtitle">Exploring data and generative forms through code.</p>
+        
+        <hr class="divider">
+
+        <section class="vis-section">
+            <h2 class="section-heading">01. The Cat City Index</h2>
+           <p class="subtitle">SVG bar chart visualizing the top 5 countries with the highest cat population data in 2025 based off data from <a href="https://worldpopulationreview.com/country-rankings/cat-population-by-country">World Population Review</a>
+            <div id="cat-chart-container" class="chart-box">
+                </div>
+        </section> 
+
+        <section class="vis-section">
+            <h2 class="section-heading">02. Geometric Whisker Art</h2>
+            <p class="subtitle">Click the button to generate a unique whisker art pattern using <code>Math.random()</code></p>
+            <button onclick="generateArt()" class="btn-generate">Create art</button>
+            <div id="art-container" class="art-box">
+                </div>
+        </section>
+    </div>
+
+    <script src="vis.js"></script>
+</body>
+</html>

@@ -1,29 +1,88 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Isabella's Personal Website</title>
-    <link rel = "stylesheet" href="styles.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
-    <header>
-        <h1>Isabella Lian</h1>
-        <p>Interactive Arts & Technology | Cat Lover | Dessert Eater</p>
+ <nav class="navbar">
+        <a href="index.html" class="nav"> Home</a>
+        <a href="visualizations.html" class="nav"> Visualizations</a>
+</nav>
+
+     <header>
+        <h1 class="header">Isabella Lian</h1>
     </header>
 
-    <section id ="about">
-        <h2>About Me</h2>
-        <p>I’m a product designer devoted to crafting user-centered solutions that simplify daily challenges and make everyday life a little easier.</p>
-    </section>
+<div class="container">
+    <aside class="sidebar">
+        <section class="info-group">
+            <h3>PERSONAL INFO</h3>
+            <p><strong>City:</strong> Vancouver, BC</p>
+            <p><strong>Email:</strong> <a href="mailto:isabellalian456@gmail.com">isabellalian456@gmail.com</a></p>
+            <p><strong>Linkedin:</strong> <a href="https://www.linkedin.com/in/isabellalian">Let's Connect</a></p>
+            <p><strong>Github:</strong> <a href="https://github.com/shnoom">Check out my Github</a></p>
 
-    <section id ="education">
-        <h2>Education</h2>
-        <ul>
-            <li>Simon Fraser University – Interactive Arts & Technology</li>
-            
-        </ul>
-    </section>
+        </section>
+
+        <section class ="info-group">
+            <h3>EDUCATION</h3>
+            <ul class="skills-list">
+                <li>Simon Fraser University – Interactive Arts & Technology</li>
+            <li>Relevant Courses</li>
+            <li>IAT 432 Design Evaluation</li>
+            <li>IAT 334 Interface Design</li>
+            <li>IAT 333 Interaction Methods</li>
+            </ul>
+        </section>
+
+        <section class="info-group">
+            <h3>EXPERIENCE</h3>
+            <ul class ="skills-list">
+                 <li>Product Designer – SFU Blueprint</li>
+            <li>Creative Director - Treehouse</li>
+            <li>Design Coordinator – Enactus SFU</li>
+            </ul>
+
+        </section>
+
+        <section class="info-group">
+            <h3>MAIN SKILLS</h3>
+            <ul class="skills-list">
+                <li>Product Design</li>
+                <li>Interface Design</li>
+                <li>User Research;</li>
+                <li>Figma & Adobe Suite</li>
+                <li>HTML, CSS, JS</li>
+            </ul>
+        </section>
+    </aside>
+
+    <main class="content">
+        
+            <section class="bio-text">
+                <h2 class="page-title">About Me</h2>
+        <hr class="divider">
+            <p><strong>Hello!</strong> I’m Isabella, a product designer devoted to crafting user-centered solutions that simplify daily challenges and make everyday life a little easier. I have a passion for bringing stories to life through interaction.</p>
+            <p>When I'm not immersed in the world of design, you can find me exploring new art, sketching ideas, or obsessing over my cats and the latest dessert spot in town.</p>
+
+        </section>
+
+        <section class="image-grid">
+             <h3>Some of my Work</h3>
+            <div class="image-wrapper">
+                <img src="Miku.jpg" alt="Hatsune Miku">
+            </div>
+        </section>
+    </main>
+
     
+</div>
+
 </body>
+<script src="main.js" type="text/javascript"></script>
 </html>
