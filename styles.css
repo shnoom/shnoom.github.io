@@ -4,6 +4,10 @@
     --bg-color: #ffffff;
     --accent-color: #ff9999; 
 }
+@font-face {
+  font-family: ProtestGrotesk; 
+  src: url(._ProtestGrotesk-160-Medium-Trial.ttf); 
+}
 
 body {
     font-family: 'Inter', sans-serif;
@@ -22,7 +26,7 @@ header{
     
 }
 .header{
-   font-family: 'Playfair Display', serif;
+   font-family: 'ProtestGrotesk', sans-serif;
     font-size: 4rem;
     color: var(--heading-color); 
 }
@@ -66,7 +70,7 @@ header{
 
 /* Main Content Styling */
 .page-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'ProtestGrotesk', sans-serif;
     font-size: 3rem;
     margin: 0;
     color: var(--heading-color);
@@ -126,31 +130,30 @@ header{
 }
 
 .page-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 4rem;
+    font-family: 'ProtestGrotesk', sans-serif;
+    font-size: 3rem;
     color: #333;
     margin: 0;
-    font-weight: 100;
 }
 
 .subtitle {
     color: #888;
-    margin-bottom: 40px;
+    margin-bottom: 2.5rem;
 }
 
 .divider {
     border: 0;
     border-top: 1px dashed #ddd;
-    margin: 20px 0 40px 0;
+    margin: 1.25rem 0 2.5rem 0;
 }
 
 
 .vis-section {
-    margin-bottom: 80px;
+    margin-bottom: 5rem;
 }
 
 .section-heading {
-    font-family: 'Playfair Display', serif;
+    font-family: 'ProtestGrotesk', sans-serif;
     font-size: 2rem;
     color: #333;
 }
