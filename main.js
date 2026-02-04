@@ -14,18 +14,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const posX = e.clientX;
         const posY = e.clientY;
 
-        // Immediate position for the dot
+        // Immediate positioning for the dot
         dot.style.left = `${posX}px`;
         dot.style.top = `${posY}px`;
 
-        // Smooth trailing effect for the outline
         outline.animate({
             left: `${posX}px`,
             top: `${posY}px`
         }, { duration: 500, fill: "forwards" });
     });
 
-    // Interaction: Expand cursor when hovering over links or buttons
+    //Expand cursor when hovering over interactive elements
     const interactiveElements = document.querySelectorAll('a, button, .bar');
     
     interactiveElements.forEach(el => {
