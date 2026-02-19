@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Video Game Industry Dashboard</title>
+  <link rel="stylesheet" href="styles.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+</head>
+ <nav class="navbar">
+        <a href="index.html" class="nav">Back to Home
+        </a>
+    </nav>
+
+<body class ="vis-page">
+    <div class="container vis-container">
+        <h1 class="page-title">VegaLite Exploration</h1>
+        <p class="subtitle">Exploring video game data using visualizations, sales units in Millions (M).</p>
+        
+        <hr class="divider">
+
+    <!-- Overview of dataset -->
+    <section class="vis-section">
+        <h2 class="section-heading">About the Dataset</h2>
+
+        <p class="bio-text">
+            This dataset contains video game sales records, with each row representing a single game release.
+            Sales are reported in <strong>millions of units sold</strong> and include regional breakdowns
+            (North America, Europe, Japan, and Other regions) and total global sales.
+        </p>
+    </section>
+
+    <hr class="divider">
+
+    <!-- Data Types Table -->
+    <section class="vis-section">
+        <h2 class="section-heading">Variable Types</h2>
+
+        <div id="cat-chart-container">
+            <table width="100%" cellpadding="10" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th align="left">Variable</th>
+                        <th align="left">Data Type</th>
+                        <th align="left">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Name</strong></td>
+                        <td>Nomianl</td>
+                        <td>Title of the video game</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Platform</strong></td>
+                        <td>Nominal</td>
+                        <td>Console or system</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Year</strong></td>
+                        <td>Ordinal</td>
+                        <td>Year of release</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Genre</strong></td>
+                        <td>Nominal</td>
+                        <td>Game genre classification</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Publisher</strong></td>
+                        <td>Nominal</td>
+                        <td>Publishing company</td>
+                    </tr>
+                    <tr>
+                        <td><strong>NA_Sales</strong></td>
+                        <td>Numerical</td>
+                        <td>North America sales</td>
+                    </tr>
+                    <tr>
+                        <td><strong>EU_Sales</strong></td>
+                        <td>Numerical</td>
+                        <td>Europe sales</td>
+                    </tr>
+                    <tr>
+                        <td><strong>JP_Sales</strong></td>
+                        <td>Numerical</td>
+                        <td>Japan sales</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Other_Sales</strong></td>
+                        <td>Numerical</td>
+                        <td>Other region sales</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Global_Sales</strong></td>
+                        <td>Numerical</td>
+                        <td>Total worldwide sales</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <hr class="divider">
+
+    <section class="vis-section">
+        <h2 class="section-heading">Key Insights</h2>
+
+        <h3>Global Sales Distribution</h3>
+        <p class="bio-text">
+            The distribution of global sales is strongly skewed.
+            The <strong>mean global sales</strong> is y 0.5 million units. Whereas the <strong>median</strong> is significantly lower at around 0.17 million units.
+            This suggets that most games sell on the lower end, but a few blockbuster titles achieve exceptionally high sales which skews the mean. 
+
+        <p class="bio-text">
+            The large gap between mean, median and a high standard deviation highlights how in the video game industry, a limited number of titles generate a disporprtionate share of total revenue.
+        </p>
+
+        <h3>Regional Patterns</h3>
+        <p class="bio-text">
+            North America represents the largest aggregate sales market,
+            followed closely by Europe. Despite "Action" video games being the most popular genre globally, Japan displays a greater prefernce for "Role-Playing" games. This aligns with certain expectations given the popularity of JRPGS, such as the Final Fantasy series both regionally and globally.
+    
+        </p>
+
+    </section>
+
+    <hr class="divider">
+
+</div>
+
+
+<div class="container vis-container">
+        <h1 class="page-title">Video Game Visualizations</h1>
+        <p class="subtitle">All sales figures are represented in <b>Millions of Units (M)</b>.</p>
+</div>
+
+    <div class="dashboard-grid">
+     
+        <div class="card full-width">
+            <div id="vis_top_platforms" class="vis"></div>
+        </div>
+
+         <div class="card full-width">
+            <div id="vis_heatmap" class="vis"></div>
+        </div>
+
+         <div class="card full-width">
+            <div id="vis_platform_evolution" class="vis"></div>
+        </div>
+
+         <div class="card full-width">
+            <div id="vis_genre_trend" class="vis"></div>
+        </div>
+
+         <div class="card">
+            <div id="vis_regional_platforms" class="vis"></div>
+        </div>
+
+        <div class="card">
+            <div id="vis_regional_genres" class="vis"></div>
+        </div>
+
+        <div class="card full-width">
+            <div id="vis_handheld" class="vis"></div>
+        </div>
+    
+    </div>
+
+    <script>
+       
+       const dataUrl = "dataset/videogames_wide.csv";
+        const config = { 
+            "background": "transparent", 
+            "view": { "stroke": "transparent" }, 
+            "axis": { "gridColor": "#b8b8b8", "labelColor": "#858585", "titleColor": "#ad6a6a" }, 
+            "title": { "color": "#ad6a6a", "fontSize": 20, "anchor": "start" } ,
+            "legend": {"labelFontSize": 10,"titleFontSize": 12,"padding": 12,"columns": 2, "symbolType": "circle"
+        }
+        };
+
+
+        //1.1 Top Platforms Globally
+vegaEmbed("#vis_top_platforms", {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Top 10 Platforms by Total Global Sales (M)",
+    "width": "container", 
+    "height": 400,
+    "data": { "url": dataUrl },
+    "transform": [
+        {
+            "aggregate": [{ "op": "sum", "field": "Global_Sales", "as": "Total_Sales_M" }],
+            "groupby": ["Platform"]
+        },
+        {
+            "window": [{ "op": "rank", "as": "rank" }],
+            "sort": [{ "field": "Total_Sales_M", "order": "descending" }]
+        },
+        { "filter": "datum.rank <= 10" }
+    ],
+    "mark": { "type": "bar", "cornerRadiusEnd": 5, "tooltip": true },
+    "encoding": {
+        "y": { 
+            "field": "Platform", 
+            "type": "nominal", 
+            "sort": "-x", 
+            "title": "Platform Name" 
+        },
+        "x": { 
+            "field": "Total_Sales_M", 
+            "type": "quantitative", 
+            "title": "Lifetime Sales (M)" 
+        },
+        "color": {
+            "field": "Total_Sales_M",
+            "type": "quantitative",
+            "scale": { "scheme": "redpurple" },
+            "legend": null
+        },
+        "tooltip": [
+            { "field": "Platform", "type": "nominal" },
+            { "field": "Total_Sales_M", "type": "quantitative", "format": ",.2f", "title": "Total Sales (M)" },
+            { "field": "rank", "type": "quantitative", "title": "All-Time Rank" }
+        ]
+
+        
+    }, "config": config
+});
+  //1.2 Global Video Game Sales by Genre and Platform
+        vegaEmbed("#vis_heatmap", {
+            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+              "title": {
+    "text": "Genre Performance by Gaming Platform",
+    "subtitle": "Global video game sales by genre and platform.", 
+  },
+            "width": "container", "height": 350,
+            "data": { "url": dataUrl },
+            "transform": 
+            
+            [
+                // Aggregate sales and find the top game for the tooltip
+                {
+                    "joinaggregate": [{ "op": "max", "field": "Global_Sales", "as": "Max_Sales" }],
+                    "groupby": ["Genre", "Platform"]
+                },
+                {
+                    "calculate": "datum.Global_Sales === datum.Max_Sales ? datum.Name : ''",
+                    "as": "Is_Top_Game"
+                },
+                {
+                    "aggregate": [
+                        { "op": "sum", "field": "Global_Sales", "as": "Total_Sales" },
+                        { "op": "max", "field": "Is_Top_Game", "as": "Top_Game" }
+                    ],
+                    "groupby": ["Genre", "Platform"]
+                }
+            ],
+            "mark": { "type": "rect", "tooltip": true },
+            "encoding": {
+                "x": { 
+                    "field": "Platform",
+                     "type": "nominal", 
+                     "axis": { "labelAngle": -45 } },
+                "y": { 
+                    "field": "Genre", 
+                    "type": "nominal" },
+                "color": { 
+                    "field": "Total_Sales", 
+                    "type": "quantitative", 
+                    "scale": { "scheme": "redpurple" }, 
+                    "title": "Sales (M)" },
+
+                "tooltip": [
+                    { "field": "Genre" },
+                    { "field": "Platform" },
+                    { "field": "Total_Sales", "format": ",.2f", "title": "Category Total (M)" },
+                    { "field": "Top_Game", "title": "Highest Selling Title" }
+                ]
+            }, "config": config
+        });
+
+// 2.1 Top 10 Platform Sales evolution overtime
+ vegaEmbed("#vis_platform_evolution", {
+            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+            "title": {
+    "text": "Console Popularity across the Years",
+    "subtitle": "A comparison of the amount of sales of the the top 10 selling consoles overtime.", 
+  },
+            "width": "container", "height": 350,
+            "data": { "url": dataUrl },
+            "transform": [
+                { "joinaggregate": [{ "op": "sum", "field": "Global_Sales", "as": "Lifetime_Sales" }], "groupby": ["Platform"] },
+                { "window": [{ "op": "dense_rank", "as": "rank" }], "sort": [{ "field": "Lifetime_Sales", "order": "descending" }] },
+                { "filter": "datum.rank <= 10" },
+                { "aggregate": [{ "op": "sum", "field": "Global_Sales", "as": "Annual_Sales" }], "groupby": ["Year", "Platform"] }
+            ],
+            "mark": { "type": "line", "point": true, "interpolate": "monotone" },
+            "encoding": {
+                "x": { "field": "Year", "type": "temporal" },
+                "y": { "field": "Annual_Sales", "type": "quantitative", "title": "Annual Sales (M)" },
+                "color": { "field": "Platform",
+                 "type": "nominal",
+                "scale": { "scheme": "set3" },  },
+                "tooltip": [
+                    { "field": "Platform" },
+                    { "field": "Year", "type": "temporal", "format": "%Y" },
+                    { "field": "Annual_Sales", "format": ",.2f", "title": "Sales (M)" }
+                ]
+            }, "config": config
+        });
+
+        // 2.2 Genre popularity over time
+vegaEmbed("#vis_genre_trend", {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+   "title": {
+    "text": "Tracking the Rise and Fall of Game Categories",
+    "subtitle": "A comparison how well different game genres sold overtime.", 
+  },
+  "width": "container",
+  "height": 400,
+  "data": { "url": dataUrl },
+  "transform": [
+    { "filter": "datum.Year != null" },
+    {
+      "aggregate": [{ "op": "sum", "field": "Global_Sales", "as": "Total_Sales" }],
+      "groupby": ["Year", "Genre"]
+    }
+  ],
+  "mark": { "type": "area", "tooltip": true, "line": true },
+  "encoding": {
+    "x": { 
+      "field": "Year", 
+      "type": "temporal", 
+      "title": "Release Year",
+      "axis": { "format": "%Y" }
+    },
+    "y": { 
+      "field": "Total_Sales", 
+      "type": "quantitative", 
+      "title": "Global Sales (M)",
+      "stack": "zero" 
+    },
+    "color": { 
+      "field": "Genre", 
+      "type": "nominal", 
+      "scale": { "scheme": "set3" },
+      "title": "Game Genre"
+    },
+    "tooltip": [
+      { "field": "Year", "type": "temporal", "format": "%Y", "title": "Year" },
+      { "field": "Genre", "type": "nominal" },
+      { "field": "Total_Sales", "format": ",.2f", "title": "Sales (M)" }
+    ]
+  }, "config": config
+});
+        
+// Regional Platform preference (Platforms with the most sales in each region)
+vegaEmbed("#vis_regional_platforms", {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Global Console Preferences",
+    "subtitle": "A Regional Comparison of the Top 10 Selling Consoles.", 
+  },
+  "width": "container",
+  "height": 400,
+  "data": { "url": dataUrl },
+  "transform": [
+    { "fold": ["NA_Sales", "EU_Sales", "JP_Sales", "Other_Sales"], "as": ["Region", "Sales"] },
+    {
+      "joinaggregate": [{ "op": "sum", "field": "Global_Sales", "as": "Total_Global" }],
+      "groupby": ["Platform"]
+    },
+    { "window": [{ "op": "dense_rank", "as": "rank" }], "sort": [{ "field": "Total_Global", "order": "descending" }] },
+    { "filter": "datum.rank <= 10" },
+    {
+      "aggregate": [{ "op": "sum", "field": "Sales", "as": "Total_Regional_Sales" }],
+      "groupby": ["Platform", "Region"]
+    }
+  ],
+  "mark": { "type": "bar", "cornerRadiusEnd": 2 },
+  "encoding": {
+    "x": { "field": "Platform", "type": "nominal", "title": "Platform", "axis": { "labelAngle": -45 } },
+    "y": { "field": "Total_Regional_Sales", "type": "quantitative", "title": "Sales (M)" },
+    "xOffset": { "field": "Region" },
+    "color": { 
+      "field": "Region", 
+      "type": "nominal", 
+      "scale": { "scheme": "set3" },
+      "title": "Region" 
+    },
+    "tooltip": [
+      { "field": "Platform", "type": "nominal" },
+      { "field": "Region", "type": "nominal" },
+      { "field": "Total_Regional_Sales", "format": ",.2f", "title": "Sales (M)" }
+    ]
+  }, "config": config
+});
+
+    //Genre Prefernce by region
+vegaEmbed("#vis_regional_genres", {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "What the World Plays",
+  "title": {
+    "text": "What the World Plays: Genre Popularity by Region",
+    "subtitle": "A breakdown of the sales makeup of each region by genre.", 
+  },
+  "width": "container",
+  "height": 400,
+  "data": { "url": dataUrl },
+  "transform": [
+    { "fold": ["NA_Sales", "EU_Sales", "JP_Sales", "Other_Sales"], "as": ["Region", "Sales"] },
+    {
+      "aggregate": [{ "op": "sum", "field": "Sales", "as": "Total_Sales" }],
+      "groupby": ["Region", "Genre"]
+    }
+  ],
+  "mark": { "type": "bar","cornerRadiusEnd": 5, "tooltip": true },
+  "encoding": {
+    "x": { "field": "Region", "type": "nominal", "title": "Region", "axis": { "labelAngle": 0 } },
+    "y": { 
+      "field": "Total_Sales", 
+      "type": "quantitative", 
+      "stack": "normalize", 
+      "title": "Percentage of Regional Market (%)" 
+    },
+    "color": { 
+      "field": "Genre", 
+      "type": "nominal", 
+      "scale": { "scheme": "set3" },
+      "title": "Genre"
+    },
+    "tooltip": [
+      { "field": "Region", "type": "nominal" },
+      { "field": "Genre", "type": "nominal" },
+      { "field": "Total_Sales", "format": ",.2f", "title": "Total Sales (M)" }
+    ]
+  }, "config": config
+});
+
+
+  // Handheld devices rise and fall
+vegaEmbed("#vis_handheld", {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "The Rise and Fall of Handheld Devices",
+    "subtitle": "Global Sales by Handheld Device (M) 1980-2020", 
+  },
+  "width": "container",
+  "height": 500,
+  "data": { "url": dataUrl },
+  "transform": [
+    { 
+      "filter": {
+        "field": "Platform", 
+        "oneOf": ["GB", "GBA", "DS", "3DS", "PSP", "PSV", "GG", "WS"] 
+      }
+    },
+    { "filter": "datum.Year != null" },
+    {
+      "aggregate": [{ "op": "sum", "field": "Global_Sales", "as": "Total_Sales" }],
+      "groupby": ["Year", "Platform"]
+    }
+  ],
+  "mark": {
+    "type": "area",
+    "interpolate": "monotone",
+    "opacity": 0.85,
+    "stroke": "rgba(255,255,255,0.2)",
+    "strokeWidth": 1
+  },
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "temporal",
+      "title": "Year",
+      "axis": {"grid": false, "format": "%Y", "labelAngle": 0}
+    },
+    "y": {
+      "field": "Total_Sales",
+      "type": "quantitative",
+      "title": "Sales (M)",
+      "stack": "zero"
+    },
+    "color": {
+      "field": "Platform",
+      "type": "nominal",
+      "scale": {
+        "scheme": "redpurple"
+      },
+      "legend": {
+        "title": "Device",
+        "orient": "right",
+        "labelFontSize": 12,
+        "symbolType": "circle"
+      }
+    },
+    "tooltip": [
+      { "field": "Platform", "title": "Handheld Console" },
+      { "field": "Year", "type": "temporal", "format": "%Y", "title": "Year" },
+      { "field": "Total_Sales", "format": ",.1f", "title": "Annual Sales (M)" }
+    ]
+  },
+  "config":  config
+});
+    </script>
+
+    <script src="main.js"></script>
+</body>
+</html>
