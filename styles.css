@@ -199,6 +199,14 @@ svg {
         .full-width { grid-column: 1 / -1; }
         .vis { width: 100%; }
 
+        /* table Styling */
+.variable-table th, 
+.variable-table td {
+    text-align: left;
+    padding: 1rem; 
+}
+
+
 a{
     color: var(--text-color);
 }
