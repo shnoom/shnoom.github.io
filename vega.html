@@ -9,26 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 
-    <style>
-        
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
-            gap: 2rem;
-            max-width: 80rem;
-            margin: 0 auto;
-        }
-        .card {
-            background: var(--card-color);
-            padding: 1.25rem;
-            border-radius: 1rem;
-            border: 1px solid #f0f0f0;
-            min-height: 400px;
-        }
-        .full-width { grid-column: 1 / -1; }
-        .vis { width: 100%; }
-        
-    </style>
+
 </head>
  <nav class="navbar">
         <a href="index.html" class="nav">Back to Home
@@ -142,7 +123,7 @@
         <h3>Regional Patterns</h3>
         <p class="bio-text">
             North America represents the largest aggregate sales market,
-            followed closely by Europe. Despite "Action" video games being the most popular genre globally, Japan displays a greater prefernce for "Role-Playing" games. This aligns with certain expectations given the popularity of JRPGS, such as the Final Fantasy series both regionally and globally.
+            followed closely by Europe. Despite "Action" video games being the most popular genre globally, Japan displays a greater prefernce for "Role-Playing" games. This aligns with certain expectations I have, given the popularity of JRPGS, such as the Final Fantasy series both regionally and globally.
     
         </p>
 
@@ -198,7 +179,7 @@
             "view": { "stroke": "transparent" }, 
             "axis": { "gridColor": "#b8b8b8", "labelColor": "#858585", "titleColor": "#ad6a6a" }, 
             "title": { "color": "#ad6a6a", "fontSize": 20, "anchor": "start" } ,
-            "legend": {"labelFontSize": 10,"titleFontSize": 12,"padding": 12,"columns": 2, "symbolType": "circle"
+            "legend": {"labelFontSize": 10,"titleFontSize": 12,"padding": 5,"columns": 2, "symbolType": "circle"
         }
         };
 
