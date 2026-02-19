@@ -187,8 +187,8 @@
 
         //1.1 Top Platforms Globally
 vegaEmbed("#vis_top_platforms", {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": "Top 10 Platforms by Total Global Sales (M)",
+    "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+    "title": "Top 10 Platforms with Highest Global Video Game Sales (M)",
     "width": "container", 
     "height": 400,
     "data": { "url": dataUrl },
@@ -233,7 +233,7 @@ vegaEmbed("#vis_top_platforms", {
 });
   //1.2 Global Video Game Sales by Genre and Platform
         vegaEmbed("#vis_heatmap", {
-            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+            "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
 
               "title": {
     "text": "Genre Performance by Gaming Platform",
@@ -287,10 +287,10 @@ vegaEmbed("#vis_top_platforms", {
 
 // 2.1 Top 10 Platform Sales evolution overtime
  vegaEmbed("#vis_platform_evolution", {
-            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+            "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
             "title": {
-    "text": "Console Popularity across the Years",
-    "subtitle": "A comparison of the amount of sales of the the top 10 selling consoles overtime.", 
+    "text": "Video Game and Console Popularity across the Years",
+    "subtitle": "A comparison of the amount of video game sales and their consoles overtime.", 
   },
             "width": "container", "height": 350,
             "data": { "url": dataUrl },
@@ -317,7 +317,7 @@ vegaEmbed("#vis_top_platforms", {
 
         // 2.2 Genre popularity over time
 vegaEmbed("#vis_genre_trend", {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "$schema": "https://vega.github.io/schema/vega-lite/6.json",
    "title": {
     "text": "Tracking the Rise and Fall of Game Categories",
     "subtitle": "A comparison how well different game genres sold overtime.", 
@@ -362,10 +362,10 @@ vegaEmbed("#vis_genre_trend", {
         
 // Regional Platform preference (Platforms with the most sales in each region)
 vegaEmbed("#vis_regional_platforms", {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
   "title": {
-    "text": "Global Console Preferences",
-    "subtitle": "A Regional Comparison of the Top 10 Selling Consoles.", 
+    "text": "Global Game Sales",
+    "subtitle": "A regional comaprison of the amount of sales by region.", 
   },
   "width": "container",
   "height": 400,
@@ -404,7 +404,7 @@ vegaEmbed("#vis_regional_platforms", {
 
     //Genre Prefernce by region
 vegaEmbed("#vis_regional_genres", {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
   "title": "What the World Plays",
   "title": {
     "text": "What the World Plays: Genre Popularity by Region",
@@ -446,10 +446,10 @@ vegaEmbed("#vis_regional_genres", {
 
   // Handheld devices rise and fall
 vegaEmbed("#vis_handheld", {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
   "title": {
     "text": "The Rise and Fall of Handheld Devices",
-    "subtitle": "Global Sales by Handheld Device (M) 1980-2020", 
+    "subtitle": "Global Video Game unit Sales by Handheld Device (M) 1980-2020", 
   },
   "width": "container",
   "height": 500,
