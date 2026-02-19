@@ -206,6 +206,12 @@ svg {
     padding: 1rem; 
 }
 
+.variable-table {
+    width: 100%;
+    border-collapse: collapse;
+    padding: 1rem;
+}
+
 
 a{
     color: var(--text-color);
