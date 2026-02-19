@@ -275,23 +275,6 @@ button:hover{
  }
  
 
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
-            gap: 2rem;
-            max-width: 80rem;
-            margin: 0 auto;
-        }
-        .card {
-            background: var(--card-color);
-            padding: 1.25rem;
-            border-radius: 1rem;
-            border: 1px solid #f0f0f0;
-        }
-        .full-width { grid-column: 1 / -1; }
-        .vis { width: 100%; }
-        
-
 /* Cool custom cursor styling */
 
 .cursor-dot, 
