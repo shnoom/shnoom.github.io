@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css"/>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="d3.js" defer></script>
+</head>
+
+<body class="vis-page">
+
+    <nav class="navbar">
+        <a href="index.html" class="nav">Back to Home
+        </a>
+    </nav>
+
+    <div class="container vis-container">
+        <h1 class="page-title">D3 Lite Exploration</h1>
+        
+        <hr class="divider">
+
+           <section class="vis-section">
+            <h2 class="section-heading">Shape Repellent</h2>
+            <p class="subtitle">Click to place a shape! Hover near to repel it!</p>
+             <button id="buttonClear" class="button">
+            Clear Canvas
+        </button>
+            <div id="art-container" class="art-box">
+                <svg id="canvas" width="800" height="500"></svg>
+                </div>
+        </section>
+
+     
+</div>
+</body>
+</html>
