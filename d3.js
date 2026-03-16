@@ -54,8 +54,8 @@ svg.on("mousemove", function(event){
 
             const force = (repelDistance - distance)/repelDistance;
 
-            d.x += dx * force * 0.5;
-            d.y += dy * force * 0.5;
+            d.x += dx * force * 0.75;
+            d.y += dy * force * 0.75;
 
             // keep shapes inside canvas
             d.x = Math.max(20, Math.min(width-20, d.x));
